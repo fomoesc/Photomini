@@ -534,8 +534,10 @@ body {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   box-shadow: var(--shadow-md);
+  min-height: 0;
 }
 
 .file-item {

@@ -95,10 +95,10 @@ function App() {
   const [convertSavePath, setConvertSavePath] = useState<string | null>(null);
 
   // 调整设置
-  const [resizeSelectedSizes, setResizeSelectedSizes] = useState<number[]>([800]);
+  const [resizeSelectedSizes, setResizeSelectedSizes] = useState<number[]>([1200]);
   const resizeSizeOptions = [400, 800, 1024, 1200];
   const [resizeKeepSmall, setResizeKeepSmall] = useState(true);
-  const [resizeFormat, setResizeFormat] = useState<ResizeFormat>("keep");
+  const [resizeFormat, setResizeFormat] = useState<ResizeFormat>("webp");
   const [resizeQuality, setResizeQuality] = useState(75);
   const resizeQualityOptions = [45, 75];
   const [resizeSaveMode, setResizeSaveMode] = useState<ResizeSaveMode>("sameDir");
@@ -383,7 +383,7 @@ function App() {
       filters: [
         {
           name: "Images",
-          extensions: ["jpg", "jpeg", "png", "webp"],
+          extensions: ["jpg", "jpeg", "png", "gif", "webp", "bmp", "avif", "tiff", "svg"],
         },
       ],
     });
@@ -447,7 +447,7 @@ function App() {
       filters: [
         {
           name: "Images",
-          extensions: ["jpg", "jpeg", "png", "webp"],
+          extensions: ["jpg", "jpeg", "png", "gif", "webp", "bmp", "avif", "tiff", "svg"],
         },
       ],
     });

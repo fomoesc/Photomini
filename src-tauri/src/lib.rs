@@ -173,6 +173,9 @@ fn compress_image(path: String, quality: u8, output_path: Option<String>) -> Pro
         }
     };
 
+    // 将索引模式图片（如GIF）转换为RGB
+    let img = img.to_rgb8();
+    
     let path_lower = path.to_lowercase();
     let is_png = path_lower.ends_with(".png");
     let quality = quality.min(100).max(1);
@@ -236,6 +239,9 @@ fn convert_to_webp(path: String, quality: u8, output_path: Option<String>) -> Pr
         }
     };
 
+    // 将索引模式图片（如GIF）转换为RGB
+    let img = img.to_rgb8();
+
     let output = output_path.unwrap_or_else(|| {
         let p = Path::new(&path);
         let parent = p.parent().map(|pp| pp.to_string_lossy().to_string()).unwrap_or_default();
@@ -288,6 +294,9 @@ fn convert_to_jpg(path: String, quality: u8, output_path: Option<String>) -> Pro
             };
         }
     };
+
+    // 将索引模式图片（如GIF）转换为RGB
+    let img = img.to_rgb8();
 
     let output = output_path.unwrap_or_else(|| {
         let p = Path::new(&path);
@@ -365,6 +374,9 @@ fn resize_image(
         }
     };
 
+    // 将索引模式图片（如GIF）转换为RGB
+    let img = img.to_rgb8();
+
     let orig_width = img.width();
     let orig_height = img.height();
     let longest_edge = orig_width.max(orig_height);
@@ -423,7 +435,7 @@ fn resize_image(
         "webp"
     } else if is_webp_orig {
         "webp"
-    } else if path_lower.ends_with(".png") {
+    } else if path_lower.ends_with(".png") || path_lower.ends_with(".gif") {
         "png"
     } else {
         "jpg"
