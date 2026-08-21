@@ -326,7 +326,7 @@ function App() {
           const newFiles: FileItem[] = [];
           for (const filePath of paths) {
             const ext = filePath.toLowerCase();
-            if (/\.(jpg|jpeg|png|webp)$/.test(ext)) {
+            if (/\.(jpg|jpeg|png|gif|webp|bmp|avif|tiff|svg)$/i.test(ext)) {
               try {
                 const fileInfo: any = await invoke("get_file_info", { path: filePath });
                 newFiles.push({
@@ -797,23 +797,25 @@ function App() {
           <div className="dropzone-text">将图片拖入此处，或点击选择文件</div>
         </div>
       ) : (
-        <div className="file-list">
-          {files.map((file) => (
-            <div key={file.id} className="file-item">
-              <span className="file-name">{file.name}</span>
-              <span className="file-size">{formatSize(file.originalSize)}</span>
-              <span className="file-arrow">→</span>
-              <span className="file-new-size">
-                {formatSize(file.newSize)}
-              </span>
-              <span className={`file-status ${file.status}`}>
-                {file.status === "pending" && "⏳ 等待"}
-                {file.status === "processing" && "⟳ 处理中"}
-                {file.status === "success" && "✓ 完成"}
-                {file.status === "error" && "✗ 失败"}
-              </span>
-            </div>
-          ))}
+        <div className="file-list-container">
+          <div className="file-list">
+            {files.map((file) => (
+              <div key={file.id} className="file-item">
+                <span className="file-name">{file.name}</span>
+                <span className="file-size">{formatSize(file.originalSize)}</span>
+                <span className="file-arrow">→</span>
+                <span className="file-new-size">
+                  {formatSize(file.newSize)}
+                </span>
+                <span className={`file-status ${file.status}`}>
+                  {file.status === "pending" && "⏳ 等待"}
+                  {file.status === "processing" && "⟳ 处理中"}
+                  {file.status === "success" && "✓ 完成"}
+                  {file.status === "error" && "✗ 失败"}
+                </span>
+              </div>
+            ))}
+          </div>
           <button className="clear-btn" onClick={clearFiles}>
             清空列表
           </button>
