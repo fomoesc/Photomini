@@ -253,8 +253,7 @@ fn convert_to_webp(path: String, quality: u8, output_path: Option<String>) -> Pr
         }
     });
 
-    let rgb_img = img.to_rgb8();
-    let encoder = webp::Encoder::from_rgb(rgb_img.as_raw(), rgb_img.width(), rgb_img.height());
+    let encoder = webp::Encoder::from_rgb(img.as_raw(), img.width(), img.height());
     let webp_data = encoder.encode(quality as f32);
 
     let new_size = webp_data.len() as u64;
@@ -309,12 +308,11 @@ fn convert_to_jpg(path: String, quality: u8, output_path: Option<String>) -> Pro
         }
     });
 
-    let rgb_img = img.to_rgb8();
     let mut buffer = Cursor::new(Vec::new());
     let quality = quality.min(100).max(1);
 
     let encoder = image::codecs::jpeg::JpegEncoder::new_with_quality(&mut buffer, quality);
-    if let Err(e) = rgb_img.write_with_encoder(encoder) {
+    if let Err(e) = img.write_with_encoder(encoder) {
         return ProcessResult {
             original_size,
             new_size: 0,
@@ -401,10 +399,12 @@ fn resize_image(
         (orig_width, orig_height)
     };
 
+    // 先转换为DynamicImage以使用resize_exact方法
+    let dynamic_img = image::DynamicImage::ImageRgb8(img);
     let resized = if should_resize {
-        img.resize_exact(new_width, new_height, image::imageops::FilterType::Lanczos3)
+        dynamic_img.resize_exact(new_width, new_height, image::imageops::FilterType::Lanczos3)
     } else {
-        img
+        dynamic_img
     };
 
     let mut rgba_img = resized.to_rgba8();
