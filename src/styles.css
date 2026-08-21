@@ -635,8 +635,8 @@ body {
   width: 100%;
   padding: 14px;
   border: none;
-  background: var(--color-bg);
-  color: var(--color-text-secondary);
+  background: var(--color-primary);
+  color: white;
   border-radius: var(--radius-md);
   font-size: 14px;
   font-weight: 500;
@@ -647,7 +647,6 @@ body {
 
 .clear-btn:hover {
   background: var(--color-error);
-  color: white;
 }
 
 /* 复选框样式 */
