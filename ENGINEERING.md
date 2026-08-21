@@ -4,7 +4,7 @@
 
 ## 1. 当前状态
 
-- 当前版本：`1.2.1`
+- 当前版本：`1.2.2`
 - 主分支：`main`
 - 远端仓库：`git@github.com:fomoesc-git/Photomini.git`
 - 产品形态：Tauri 2 桌面应用

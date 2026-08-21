@@ -1,6 +1,6 @@
 [package]
 name = "photomini"
-version = "1.2.1"
+version = "1.2.2"
 description = "极简图片压缩与格式转换工具"
 authors = ["Photomini Team"]
 license = "MIT"

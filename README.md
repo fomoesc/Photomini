@@ -6,7 +6,7 @@ Photomini 面向需要快速处理图片的非专业用户：选择功能、设�
 
 ## 当前版本
 
-- 版本：`1.2.1`
+- 版本：`1.2.2`
 - macOS：支持 Apple Silicon / M 系列芯片构建
 - Windows：支持 Windows 10+ 64 位构建
 
