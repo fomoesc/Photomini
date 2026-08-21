@@ -68,34 +68,3 @@ macOS Apple Silicon 本地构建示例：
 ./node_modules/.bin/tauri build --target aarch64-apple-darwin --bundles dmg --ci --no-sign
 ./node_modules/.bin/tauri build --target aarch64-apple-darwin --bundles app --ci --no-sign
 ```
-
-## 发布流程
-
-GitHub Actions 在以下场景触发：
-
-- push `v*` 标签
-- 手动运行 `workflow_dispatch`
-
-发布新版本时建议：
-
-```bash
-git add README.md SPEC.md ENGINEERING.md package.json package-lock.json src-tauri/Cargo.toml src-tauri/Cargo.lock src-tauri/tauri.conf.json src/App.tsx src/styles.css src-tauri/src/lib.rs .github/workflows/build.yml
-git commit -m "Release v1.2.1"
-git tag v1.2.1
-git push origin main
-git push origin v1.2.1
-```
-
-Actions 会构建并上传：
-
-- macOS arm64 DMG
-- macOS arm64 `.app`
-- macOS arm64 standalone binary
-- Windows x64 MSI
-- Windows x64 NSIS installer
-- Windows x64 standalone `.exe`
-
-## 文档
-
-- [SPEC.md](SPEC.md)：产品规格和验收标准。
-- [ENGINEERING.md](ENGINEERING.md)：工程结构、关键实现、发布流程和下次迭代入口。
