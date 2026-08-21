@@ -6,7 +6,7 @@
 
 - 当前版本：`1.2.2`
 - 主分支：`main`
-- 远端仓库：`git@github.com:fomoesc-git/Photomini.git`
+- 远端仓库：`https://github.com/fomoesc/Photomini.git`
 - 产品形态：Tauri 2 桌面应用
 - 核心能力：图片压缩、WebP 转换、图片调整、自定义水印
 - 当前发布流：push `v*` tag 触发 GitHub Actions 构建 macOS arm64 和 Windows x64 产物
